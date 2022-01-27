@@ -63,6 +63,10 @@ public class BankController {
     public RequestResult addNewTransaction(@RequestBody TransactionDto transactionDto) {
         return transactionService.addNewTransaction(bank, transactionDto);
     }
+    @PostMapping("/receiver/transaction")
+    public RequestResult receiverNewTransaction(@RequestBody TransactionDto transactionDto) {
+        return transactionService.receiverNewTransaction(bank, transactionDto);
+    }
 
 
 
