@@ -106,4 +106,27 @@ public class AccountService {
         requestResult.setAccountId(accountId);
         return requestResult;
     }
-}
+
+    public RequestResult lockAccount(List<AccountDto> accounts, int accountId) {
+        RequestResult requestResult = new RequestResult();
+
+        if(!accountIdExist(accounts, accountId)) {
+            requestResult.setError("Account ID" + accountId + "does exist!");
+            return requestResult;
+        }
+        AccountDto account = getAccountById(accounts, accountId);
+        Boolean lockedStatus = account.getLocked();
+
+        account.setLocked(!lockedStatus);
+
+        requestResult.setMessage(("Locked status"+account.getLocked()));
+
+
+        requestResult.setAccountId(accountId);
+
+        return requestResult;
+    }
+
+    }
+
+

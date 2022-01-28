@@ -70,15 +70,16 @@ public class BankController {
     @PutMapping("/update/owner")
     public RequestResult updateOwnerDetails(@RequestBody AccountDto accountDto) {
         return accountService.updateOwnerDetails(bank.getAccounts(), accountDto);
-
     }
-    //todo: tehke endpoint millega saab kontot lukustada/avada. Kontollide ka ID olemasolu!
-
     @DeleteMapping ("/delete/account")
     public RequestResult deleteAccount(@RequestParam int accountId) {
         return accountService.deleteAccount(bank.getAccounts(), accountId);
-
     }
+    @PutMapping ("/lock/account")
+    public RequestResult lockAccount(@RequestParam int accountId) {
+        return accountService.lockAccount(bank.getAccounts(), accountId);
+    }
+    //todo: tehke endpoint millega saab kontot lukustada/avada. Kontollide ka ID olemasolu!
 
 
     //  loo transactionService alla uus teenus                                      createTransactionForNewAccount()
