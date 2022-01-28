@@ -46,8 +46,6 @@ public class BankController {
     }
 
 
-
-
     // TODO: Et lisada uus account, loo uus controlleri endpoint                    /new/account
     //  võta RequestBodyst sisse accountDto objekt
     //  loo bankService alla uus teenus                                             addAccountToBank()
@@ -63,16 +61,24 @@ public class BankController {
     public RequestResult addNewTransaction(@RequestBody TransactionDto transactionDto) {
         return transactionService.addNewTransaction(bank, transactionDto);
     }
+
     @PostMapping("/receiver/transaction")
     public RequestResult receiverNewTransaction(@RequestBody TransactionDto transactionDto) {
         return transactionService.receiverNewTransaction(bank, transactionDto);
     }
+
     @PutMapping("/update/owner")
     public RequestResult updateOwnerDetails(@RequestBody AccountDto accountDto) {
-        return  accountService.updateOwnerDetails(bank.getAccounts(), accountDto);
+        return accountService.updateOwnerDetails(bank.getAccounts(), accountDto);
 
     }
+    //todo: tehke endpoint millega saab kontot lukustada/avada. Kontollide ka ID olemasolu!
 
+    @DeleteMapping ("/delete/account")
+    public RequestResult deleteAccount(@RequestParam int accountId) {
+        return accountService.deleteAccount(bank.getAccounts(), accountId);
+
+    }
 
 
     //  loo transactionService alla uus teenus                                      createTransactionForNewAccount()
